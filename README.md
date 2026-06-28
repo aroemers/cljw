@@ -3,6 +3,7 @@
 The `cljw` script is a shell script that installs Clojure CLI local to the script, if not globally available yet.
 
 Put a `deps.edn` file next to it, and you have a way to share Clojure scripts without requiring a pre-installed Clojure.
+It does assume Java is installed (current [minimal version](https://clojure.org/releases/downloads#_java_compatibility) is Java 8)
 Make sure `cljw` is executable (`chmod +x cljw`).
 
 Works on macOS (tested on Tahoe 26) and Linux (tested on Ubuntu).
