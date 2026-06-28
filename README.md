@@ -1,14 +1,20 @@
 # cljw - clojure wrapper
 
-The `cljw` script is a shell script that installs Clojure CLI local to the script, if not globally available yet.
+The `cljw` shell script installs Clojure CLI local to the script, if not globally available yet.
+It then calls Clojure CLI with the provided arguments.
 
-Put a `deps.edn` file next to it, and you have a way to share Clojure scripts without requiring a pre-installed Clojure.
-It does assume Java is installed (current [minimal version](https://clojure.org/releases/downloads#_java_compatibility) is Java 8)
+```sh
+> cljw script.clj
+```
+
+Put a `deps.edn` file next to it, and you have a portable way to share Clojure scripts without requiring a pre-installed Clojure or building and distributing JARs.
+It does assume Java is installed (current [minimal version](https://clojure.org/releases/downloads#_java_compatibility) is Java 8).
 Make sure `cljw` is executable (`chmod +x cljw`).
 
 Works on macOS (tested on Tahoe 26) and Linux (tested on Ubuntu).
-Needs `curl`, `shasum` and `tar` installed.
 This script uses the official POSIX install script from https://download.clojure.org/install/posix-install.sh.
+It needs `curl`, `shasum` and `tar` installed.
+
 
 _As always, have fun!_
 
