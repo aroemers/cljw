@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Self-contained Clojure Wrapper (cljw) for POSIX
+# Downloads and uses a local Clojure CLI installation
+#
+# Copyright © 2026 Functional BytesCopyright © 2026 Functional Bytes
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License 2.0 which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the Eclipse
+# Public License, v. 2.0 are satisfied: GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or (at your
+# option) any later version, with the GNU Classpath Exception which is available
+# at https://www.gnu.org/software/classpath/license.html.
+
+set -e
+
+# Check if clojure is already on the PATH.
+if command -v clojure >/dev/null 2>&1; then
+    exec clojure "$@"
+fi
+
+# Resolve the script directory
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+CLJW_DIR="${SCRIPT_DIR}/.cljw"
+CLJW_BIN="${CLJW_DIR}/bin/clojure"
+CLOJURE_CLI_URL="https://download.clojure.org/install/posix-install.sh"
+
+# Install Clojure CLI if not present
+if [ ! -x "$CLJW_BIN" ]; then
+    mkdir -p "$CLJW_DIR"
+    echo "Installing Clojure CLI to ${CLJW_DIR}..."
+    curl -sL "$CLOJURE_CLI_URL" -o /tmp/clojure-install.sh
+    sh /tmp/clojure-install.sh --prefix "$CLJW_DIR"
+    rm /tmp/clojure-install.sh
+fi
+
+# Forward all arguments to the Clojure CLI
+exec "$CLJW_BIN" "$@"
