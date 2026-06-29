@@ -11,7 +11,7 @@ Put a `deps.edn` file next to it, and you have a portable way to share Clojure s
 It does assume Java is installed (current [minimal version](https://clojure.org/releases/downloads#_java_compatibility) is Java 8).
 Make sure `cljw` is executable (`chmod +x cljw`).
 
-Works on macOS (tested on Tahoe 26) and Linux (tested on Ubuntu).
+Works on macOS (tested on Tahoe 26) and Linux (tested on Ubuntu 26.04).
 This script uses the official POSIX install script from https://download.clojure.org/install/posix-install.sh.
 It needs `curl`, `shasum` and `tar` installed.
 
